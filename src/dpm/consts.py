@@ -10,10 +10,8 @@ elif re.match(".*fosca.*", socket.gethostname(), re.IGNORECASE):
     base_path = '/Volumes/COUCOU_CFC/digitpos/exp/'
     results_dir = base_path + 'results/'
     raw_data_path = base_path + 'exp-data/'
-else: # amazon
-    base_path = '/mnt/s3/dror-meg/digposmeg/'
-    results_dir = '/home/ubuntu/dpm/results/'
-    raw_data_path = base_path
+else:
+    raise Exception('Unrecognized computer')
 
 decoding_dir = results_dir + 'decoding/'
 rsa_data_path = base_path + 'rsa-data/'
