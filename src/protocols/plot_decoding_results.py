@@ -56,13 +56,13 @@ with open(path,'rb') as fid:
 #
 # directory = 'decoding-sh/whole_number'
 # file_suffix = 'comp'
-# chance_level=umne.util.TimeRange(max_time = 0)
+# chance_level=pmne.util.TimeRange(max_time = 0)
 # min_time = -0.1
 # max_time = 0.6
 # tmin_stats = 0.1
 # tmax_stats=0.6
 #
-# umne.decplt.load_and_plot(dpm.consts.results_dir + directory + '/scores_*' + file_suffix + '*.pkl',
+# pmne.decplt.load_and_plot(dpm.consts.results_dir + directory + '/scores_*' + file_suffix + '*.pkl',
 #                           chance_level=chance_level, min_time=min_time,max_time=max_time,tmin_stats = 0.1,tmax_stats=0.6)
 #
 #

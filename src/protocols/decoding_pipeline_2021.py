@@ -1,10 +1,13 @@
 import sys
 
 import mne
-
 sys.path.append('/Users/dror/git/digposmeg/analyze')
 sys.path.append('/Users/dror/git/jr-tools')
 sys.path.append('/Users/dror/git/pyRiemann')
+
+sys.path.append('/neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/scripts/digposmeg/src/')
+
+
 from dpm.util import create_folder
 
 import dpm.plots
@@ -232,7 +235,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
 
 # dpm.consts.results_dir = "/Users/fosca/Desktop/"
 # dpm.consts.figures_path = "/Users/fosca/Desktop/figures/"
-# umne.decplt.load_and_plot_gat(dpm.consts.results_dir + '/scores_*' + "comp_score_as_unit_on_single_digits" + '*.pkl',
+# pmne.decplt.load_and_plot_gat(dpm.consts.results_dir + '/scores_*' + "comp_score_as_unit_on_single_digits" + '*.pkl',
 #                           chance_level=0.25,tmin_stats=0,tmax_stats=1,plot_subjects=True)
 
 
