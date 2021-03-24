@@ -11,8 +11,8 @@ import time
 import tempfile
 import copy
 
-import umne.split
-import umne
+import pmne.split
+import pmne
 
 import dpm.files
 from dpm import write_to_log
