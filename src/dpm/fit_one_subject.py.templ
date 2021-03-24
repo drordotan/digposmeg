@@ -1,0 +1,31 @@
+import sys
+
+sys.path.append('/git/digposmeg/analyze')
+sys.path.append('/git/jr-tools')
+sys.path.append('/git/pyRiemann')
+
+import mne
+mne.set_log_level('info')
+
+import dpm
+
+subj = sys.argv[1]
+out_dir = sys.argv[2]
+filenames = sys.argv[3]
+log_fn = sys.argv[4]
+
+dpm.decoding.fit_one_subject(subj,
+                            data_filenames=filenames,
+                            classifier_specs=$CLASSIFIER_SPECS$,
+                            out_dir=out_dir,
+                            log_fn=log_fn,
+                            decim=$DECIM$,
+                            meg_channels=$MEG_CHANNELS$,
+                            decoding_method=$DECODING_METHOD$,
+                            sliding_window_size=$SLIDING_WINDOW_SIZE$,
+                            sliding_window_step=$SLIDING_WINDOW_STEP$,
+                            tmin=$TMIN$,
+                            tmax=$TMAX$,
+                            baseline=$BASELINE$,
+                            generalize_across_time=$GAT$,
+                            filename_suffix=$filename_suffix$)
