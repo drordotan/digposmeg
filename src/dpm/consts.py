@@ -6,20 +6,8 @@ if re.match(".*dror.*", socket.gethostname(), re.IGNORECASE):
     results_dir = base_path + 'results/'
     raw_data_path = base_path + 'exp-data/'
     figures_path = '/Users/dror/data/acad-proj/2-InProgress/DigitPositionMEG/figures'
-elif re.match(".*calmar.*", socket.gethostname(), re.IGNORECASE):
-    base_path = '/neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/'
-    results_dir = base_path + 'results/'
-    raw_data_path = base_path + 'exp-data/'
-elif re.match(".*narval.*", socket.gethostname(), re.IGNORECASE):
-    base_path = '/neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/'
-    results_dir = base_path + 'results/'
-    raw_data_path = base_path + 'exp-data/'
-elif re.match(".*alambic.*", socket.gethostname(), re.IGNORECASE):
-    base_path = '/neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/'
-    results_dir = base_path + 'results/'
-    raw_data_path = base_path + 'exp-data/'
-elif re.match(".*is155510.*", socket.gethostname(), re.IGNORECASE):
-    base_path = '/neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/'
+elif re.match(".*fosca.*", socket.gethostname(), re.IGNORECASE):
+    base_path = '/Volumes/COUCOU_CFC/digitpos/exp/'
     results_dir = base_path + 'results/'
     raw_data_path = base_path + 'exp-data/'
 else: # amazon

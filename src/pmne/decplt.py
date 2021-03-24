@@ -80,7 +80,7 @@ def plot_scores(scores, times, chance_level=None, fig_id=1, ax=None, min_time=-m
     Plot the decoding scores per time - load data from files created by the dpm.decoding package
 
     :param chance_level: Chance-level decoding score.
-                         If a pmne.util.TimeRange() object is provided, use the average over this range as the chance level
+                         If a umne.util.TimeRange() object is provided, use the average over this range as the chance level
     :param fig_id: The ID of the plotted figure
     :param min_time: Miminal time for plotting
     :param max_time: Maximal time for plotting
@@ -120,7 +120,7 @@ def plot_gat_scores(scores, times, chance_level=None, ax=None, fig_id=2, min_tim
     """
     Plot the decoding scores per time - load data from files created by the dpm.decoding package
 
-    :param chance_level: Chance-level decoding score. If a pmne.util.TimeRange() object is provided, use this range
+    :param chance_level: Chance-level decoding score. If a umne.util.TimeRange() object is provided, use this range
     """
 
     plt_scores, plt_times = filter_scores(scores, times, min_time, max_time)

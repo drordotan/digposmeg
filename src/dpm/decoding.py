@@ -12,7 +12,7 @@ import tempfile
 import copy
 
 import pmne.split
-import pmne
+import umne
 
 import dpm.files
 from dpm import write_to_log
