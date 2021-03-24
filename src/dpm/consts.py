@@ -14,6 +14,7 @@ elif re.match(".*calmar.*", socket.gethostname(), re.IGNORECASE) or re.match(".*
     sys.path.append(base_path+'/scripts/')
     sys.path.append(base_path+'/scripts/digposmeg/')
     sys.path.append(base_path+'/scripts/umne/')
+    sys.path.append('/neurospin/meg/meg_tmp/Geom_Seq_Fosca_2017/Geom_Seq_scripts/Analysis_scripts/packages/pyRiemann/')
 else:
     raise Exception('Unrecognized computer')
 
