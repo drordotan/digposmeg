@@ -6,7 +6,6 @@ import matplotlib.animation as animation
 import dpm
 import pickle
 
-
 # import pmne.rsa_old
 
 plt.rcParams['animation.ffmpeg_path'] = u'/usr/local/bin/ffmpeg'
