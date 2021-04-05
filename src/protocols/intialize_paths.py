@@ -5,7 +5,9 @@ sys.path.append(base_path + '/scripts/digposmeg/src/')
 
 import dpm
 import mne
-fif_path = 'neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/exp-data/ag_170045/sss/comp1c_1_raw_sss.fif'
+
+fif_path ="/neurospin/meg/meg_tmp/Geom_Seq_Fosca_2017/data/subjects/sss/ag_170045/ling_audio1_raw_sss.fif"
+fif_path = '//neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/exp-data/eb_170163/sss/comp1c_1_raw_sss.fif'
 mne.io.read_raw_fif(fif_path)
 
 
