@@ -18,6 +18,10 @@ from umne import stats
 def load_and_plot(score_files_mask, out_dir, chance_level=None, fig_id=1, min_time=-math.inf, max_time=math.inf,
                   tmin_stats=None, tmax_stats=None, plot_subjects=False):
 
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
+
     scores, times, filenames = load_score_files(score_files_mask, False, return_file_names=True)
 
     if plot_subjects:
@@ -26,15 +30,20 @@ def load_and_plot(score_files_mask, out_dir, chance_level=None, fig_id=1, min_ti
             filename = os.path.basename(filenames[ii])
             plot_scores(scores[ii, :], times, chance_level=chance_level, min_time=min_time, max_time=max_time)
             plt.gcf().savefig(str(out_dir) + filename[:-4] + '_diag.png')
-    else:
-        print('Plotting data of {:} subjects'.format(scores.shape[0]))
-        plot_scores(scores, times, chance_level=chance_level, fig_id=fig_id, min_time=min_time, max_time=max_time,
-                    tmin_stats=tmin_stats, tmax_stats=tmax_stats)
+
+    print('Plotting data of {:} subjects'.format(scores.shape[0]))
+    plot_scores(scores, times, chance_level=chance_level, fig_id=fig_id, min_time=min_time, max_time=max_time,
+                tmin_stats=tmin_stats, tmax_stats=tmax_stats)
+    plt.gcf().savefig(str(out_dir) + 'allsubjects'+ '_diag.png')
+    plt.close('all')
 
 
 #------------------------------------------------
 def load_and_plot_gat(score_files_mask, out_dir, chance_level=None, fig_id=2, min_time=-math.inf, max_time=math.inf, tmin_stats=None,
                       tmax_stats=None, plot_subjects=False):
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
 
     scores, times, filenames = load_score_files(score_files_mask, True, return_file_names=True)
     if plot_subjects:
@@ -44,15 +53,19 @@ def load_and_plot_gat(score_files_mask, out_dir, chance_level=None, fig_id=2, mi
             filename = os.path.basename(filenames[ii])
             plt.gcf().savefig(str(out_dir) + filename[:-4] + '_GAT.png')
             plt.close('all')
-    else:
-        print('Plotting data of {:} subjects'.format(scores.shape[0]))
-        plot_gat_scores(scores, times, chance_level=chance_level, fig_id=fig_id, min_time=min_time, max_time=max_time,
-                        tmin_stats=tmin_stats, tmax_stats=tmax_stats)
 
+    print('Plotting data of {:} subjects'.format(scores.shape[0]))
+    plot_gat_scores(scores, times, chance_level=chance_level, fig_id=fig_id, min_time=min_time, max_time=max_time,
+                    tmin_stats=tmin_stats, tmax_stats=tmax_stats)
+    plt.gcf().savefig(str(out_dir) + 'allsubjects'+ '_GAT.png')
+    plt.close('all')
 
 #------------------------------------------------
 def load_and_plot_both(score_files_mask, out_dir, chance_level=None, fig_ids=(1, 2), min_time=-math.inf, max_time=math.inf,
                        tmin_stats=None, tmax_stats=None, plot_subjects=False):
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
 
     scores_diag, times = load_score_files(score_files_mask, False)
     scores_gat, times, filenames = load_score_files(score_files_mask, True, return_file_names=True)
@@ -67,11 +80,16 @@ def load_and_plot_both(score_files_mask, out_dir, chance_level=None, fig_ids=(1,
             plot_scores(scores_diag[ii, :], times, chance_level=chance_level, min_time=min_time, max_time=max_time)
             plt.gcf().savefig(str(out_dir) + filename[:-4] + '_diag.png')
             plt.close('all')
-    else:
-        print('Plotting data of {:} subjects'.format(scores_diag.shape[0]))
-        plot_scores(scores_diag, times, chance_level=chance_level, fig_id=fig_ids[0], min_time=min_time, max_time=max_time)
-        plot_gat_scores(scores_gat, times, chance_level=chance_level, fig_id=fig_ids[1], min_time=min_time, max_time=max_time,
-                        tmin_stats=tmin_stats, tmax_stats=tmax_stats)
+
+    print('Plotting data of {:} subjects'.format(scores_diag.shape[0]))
+    plot_scores(scores_diag, times, chance_level=chance_level, fig_id=fig_ids[0], min_time=min_time, max_time=max_time)
+    plt.gcf().savefig(str(out_dir) + 'allsubjects'+ '_diag.png')
+    plt.close('all')
+
+    plot_gat_scores(scores_gat, times, chance_level=chance_level, fig_id=fig_ids[1], min_time=min_time, max_time=max_time,
+                    tmin_stats=tmin_stats, tmax_stats=tmax_stats)
+    plt.gcf().savefig(str(out_dir) + 'allsubjects'+ '_GAT.png')
+    plt.close('all')
 
 
 #------------------------------------------------------------------
