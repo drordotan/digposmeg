@@ -349,7 +349,7 @@ def run_fit_and_score_on_separate_trials(subj_ids, classifier_specs_train, data_
                                          load_error_trials=False, training_group_size=0.5,
                                          classifier_specs_test=None,
                                          decim=1, meg_channels=True,
-                                         decoding_method='standard', sliding_window_size=100, sliding_window_step=20,
+                                         decoding_method='standard', sliding_window_size=100, sliding_window_step=10,
                                          tmin=-0.1, tmax=1.0, baseline=(None, 0), lopass_filter=None, reject=None, generalize_across_time=True,
                                          env_per_subj=False, on_response=False, cv=None, train_epoch_filter=None, test_epoch_filter=None,
                                          create_dir=False):
