@@ -8,6 +8,7 @@ sys.path.append('/Users/dror/git/pyRiemann')
 
 import dpm
 import umne
+import pmne.decplt
 import dpm.plots
 
 

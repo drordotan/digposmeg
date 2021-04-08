@@ -1,14 +1,14 @@
+"""
 import sys
-
-import mne
-
 sys.path.append('/Users/dror/git/digposmeg/analyze')
 sys.path.append('/Users/dror/git/jr-tools')
 sys.path.append('/Users/dror/git/pyRiemann')
+"""
+
+import mne
 from dpm.util import create_folder
 
 import dpm.plots
-import pmne.decplt
 
 #------------------- set parameters -----------------------------------
 
@@ -48,7 +48,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, loc_classifier, data
                                                   grouping_metadata_fields=['location', 'target'],
                                                   filename_suffix_fit='comp',
                                                   classifier_specs_test=None,
-                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv = 4)
+                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv=4)
 
 #------------------------------------------------------------------------------
 # retinotopic: decode the digit in a given position on screen
@@ -61,7 +61,7 @@ for i in range(6):
                                                       grouping_metadata_fields=['location', 'target'],
                                                       filename_suffix_fit='comp_position_%i' % i,
                                                       classifier_specs_test=[cspec],
-                                                      tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj,cv=4)
+                                                      tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv=4)
 
 
 #------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.targ
                                                   grouping_metadata_fields=['location', 'target'],
                                                   filename_suffix_fit='comp',
                                                   classifier_specs_test=[dpm.classifiers.target()],
-                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj,decoding_method='standard_reg',load_error_trials=False,
+                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, decoding_method='standard_reg', load_error_trials=False,
                                                   cv=4)
 
 #------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.deca
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_decade', 'comp_score_as_unit'],
                                                   classifier_specs_test=[dpm.classifiers.decade(filter=None), dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj,cv=4, load_error_trials=False)
+                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv=4, load_error_trials=False)
 
 # train decade decoder on given positions and test it on the other positions
 dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.decade(filter=None), data_filenames=dpm.comparison_raw_files,
@@ -135,7 +135,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.deca
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_decade', 'comp_score_as_unit'],
                                                   classifier_specs_test=[dpm.classifiers.decade(filter=None), dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True, load_error_trials=False,baseline=baseline_resp,cv=4)
+                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True, load_error_trials=False,baseline=baseline_resp, cv=4)
 
 
 #---------------------------------------------------------------
@@ -149,7 +149,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_unit'],
                                                   classifier_specs_test=[dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj,cv=4)
+                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv=4)
 
 
 dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit(filter=None), data_filenames=dpm.comparison_raw_files,
@@ -159,7 +159,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_unit_on_4X'],
                                                   classifier_specs_test=[dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj,cv=4)
+                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv=4)
 
 dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit(filter=None), data_filenames=dpm.comparison_raw_files,
                                                   out_dir=decoding_sh_dir + 'unit',
@@ -168,7 +168,7 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_unit_on_single_digits'],
                                                   classifier_specs_test=[dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj,cv=4)
+                                                  tmin=tmin_stim, tmax=tmax_stim, env_per_subj=env_per_subj, cv=4)
 
 # RESPONSE LOCKED
 dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit(filter=None), data_filenames=dpm.comparison_raw_files,
@@ -178,7 +178,8 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_unit'],
                                                   classifier_specs_test=[dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True,cv=4,baseline=baseline_resp)
+                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True, cv=4,
+                                                  baseline=baseline_resp)
 
 
 dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit(filter=None), data_filenames=dpm.comparison_raw_files,
@@ -188,7 +189,8 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_unit_on_4X'],
                                                   classifier_specs_test=[dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True,cv=4,baseline=baseline_resp)
+                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True, cv=4,
+                                                  baseline=baseline_resp)
 
 dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit(filter=None), data_filenames=dpm.comparison_raw_files,
                                                   out_dir=decoding_sh_dir + 'unit/RT-locked/',
@@ -197,6 +199,5 @@ dpm.decoding.run_fit_and_score_on_separate_trials(subj_ids, dpm.classifiers.unit
                                                   filename_suffix_fit='comp',
                                                   filename_suffix_scores=['comp_score_as_unit_on_single_digits'],
                                                   classifier_specs_test=[dpm.classifiers.unit(filter=None)],
-                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True,cv=4,baseline=baseline_resp)
-
-
+                                                  tmin=tmin_resp, tmax=tmax_resp, env_per_subj=env_per_subj, on_response=True, cv=4,
+                                                  baseline=baseline_resp)
