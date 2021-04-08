@@ -1,4 +1,5 @@
 import sys
+import mne
 
 base_path = '/neurospin/meg/meg_tmp/DPEM_Dror_Fosca_2017/'
 sys.path.append(base_path + '/scripts/digposmeg/src/')
@@ -9,7 +10,6 @@ mne.io.read_raw_fif(fif_path)
 with open(fif_path, "rb") as fid:
     fid.readline(limit=10)
 
-import mne
 
 # mne.io.read_raw_fif(fif_path)
 

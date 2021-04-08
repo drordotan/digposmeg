@@ -28,8 +28,6 @@ pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/hemifield'+'/s
                               dpm.consts.figures_path+'/decoding/hemifield/comp/',
                               chance_level=chance_hemifield, tmin_stats=tmin_stats_stim, tmax_stats=tmax_stats_stim, plot_subjects=True)
 
-
-
 # location
 chance_location = 0.2
 
@@ -89,27 +87,27 @@ pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/decade_and_uni
 #---------------------------------------------------------------
 chance_unit = 0.25
 
-pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit'+'/scores_*'+"comp_score_as_unit"+'*.pkl',
+pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit'+'/scores_*'+"comp_score_as_unit.pkl",
                               dpm.consts.figures_path+'/decoding/unit/comp/stim_locked/',
                               chance_level=chance_unit, tmin_stats=tmin_stats_stim, tmax_stats=tmax_stats_stim, plot_subjects=True)
 
-pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit/RT-locked'+'/scores_*'+'comp_score_as_unit'+'*.pkl',
+pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit/RT-locked'+'/scores_*'+'comp_score_as_unit.pkl',
                               dpm.consts.figures_path+'/decoding/unit/comp/resp_locked/',
-                              chance_level=chance_unit, tmin_stats=tmin_stats_resp, tmax_stats=tmax_stats_resp)
+                              chance_level=chance_unit, tmin_stats=tmin_stats_resp, tmax_stats=tmax_stats_resp, plot_subjects=True)
 
 pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit'+'/scores_*'+"comp_score_as_unit_on_4X"+'*.pkl',
                               dpm.consts.figures_path+'/decoding/unit/comp/stim_locked_on_4X/',
-                              chance_level=chance_unit, tmin_stats=tmin_stats_stim, tmax_stats=tmax_stats_stim)
+                              chance_level=chance_unit, tmin_stats=tmin_stats_stim, tmax_stats=tmax_stats_stim, plot_subjects=True)
 
 pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit/RT-locked'+'/scores_*'+"comp_score_as_unit_on_4X"+'*.pkl',
                               dpm.consts.figures_path+'/decoding/unit/comp/resp_locked_on_4X/',
-                              chance_level=chance_unit, tmin_stats=tmin_stats_resp, tmax_stats=tmax_stats_resp)
+                              chance_level=chance_unit, tmin_stats=tmin_stats_resp, tmax_stats=tmax_stats_resp, plot_subjects=True)
 
 pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit/'+'/scores_*'+"comp_score_as_unit_on_single_digits"+'*.pkl',
                               dpm.consts.figures_path+'/decoding/unit/comp/stim_locked_single_digits/',
-                              chance_level=chance_unit, tmin_stats=tmin_stats_stim, tmax_stats=tmax_stats_stim)
+                              chance_level=chance_unit, tmin_stats=tmin_stats_stim, tmax_stats=tmax_stats_stim, plot_subjects=True)
 
 pmne.decplt.load_and_plot_gat(dpm.consts.results_dir+'decoding-sh/unit/RT-locked'+'/scores_*'+"comp_score_as_unit_on_single_digits"+'*.pkl',
                               dpm.consts.figures_path+'/decoding/unit/comp/resp_locked_single_digits/',
-                              chance_level=chance_unit, tmin_stats=tmin_stats_resp, tmax_stats=tmax_stats_resp)
+                              chance_level=chance_unit, tmin_stats=tmin_stats_resp, tmax_stats=tmax_stats_resp, plot_subjects=True)
 
