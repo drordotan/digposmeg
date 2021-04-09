@@ -22,7 +22,8 @@ class fn_template:
 
 #-------------------------------------------------------------------------------------------
 def preprocess_and_compute_dissimilarity_stim(subj_id, metrics, meg_channels=True, tmin=-0.2, tmax=1.0, baseline=(None, 0),
-                                              lopass_filter=None, rejection='default', split_half=True, include_4=True):
+                                              lopass_filter=None, rejection='default', split_half=True, include_4=True,
+                                              grouping_metadata_fields=('target', 'location')):
     """
     Preprocess RSA data: load the epochs, and compute basic dissimilarity matrices.
     This is done while locking the epochs on the stimulus
@@ -30,6 +31,8 @@ def preprocess_and_compute_dissimilarity_stim(subj_id, metrics, meg_channels=Tru
     :param split_half: For the within-task dissimilarity, split the data in half
     :param include_4: whether to include stimuli with the digit 4 or not
     """
+
+    subdir_suffix = "_".join(grouping_metadata_fields)
 
     if isinstance(metrics, str):
         metrics = metrics,
@@ -42,13 +45,15 @@ def preprocess_and_compute_dissimilarity_stim(subj_id, metrics, meg_channels=Tru
     #-- Compute dissimilarity without split-half
 
     epochs_rsvp = _load_and_average(subj_id, dpm.consts.rsvp_raw_files, 'RSVP', baseline, lopass_filter, meg_channels, rejection,
-                                    tmin=tmin, tmax=tmax, on_response=False, epoch_filter=epoch_filter, load_error_trials=True)
+                                    tmin=tmin, tmax=tmax, on_response=False, epoch_filter=epoch_filter, load_error_trials=True,
+                                    grouping_metadata_fields=grouping_metadata_fields)
 
     epochs_comp = _load_and_average(subj_id, dpm.consts.comparison_raw_files, 'comp', baseline, lopass_filter, meg_channels, rejection,
-                                    tmin=tmin, tmax=tmax, on_response=False, epoch_filter=epoch_filter, load_error_trials=False)
+                                    tmin=tmin, tmax=tmax, on_response=False, epoch_filter=epoch_filter, load_error_trials=False,
+                                    grouping_metadata_fields=grouping_metadata_fields)
 
     for metric in metrics:
-        _compute_and_save_dissimilarity(epochs_comp, epochs_rsvp, 'inter-task', subj_id, metric, False, params)
+        _compute_and_save_dissimilarity(epochs_comp, epochs_rsvp, 'inter-task/' + subdir_suffix, subj_id, metric, False, params)
 
     #-- Compute within-task dissimilarity
     params['split_half'] = split_half
@@ -57,11 +62,11 @@ def preprocess_and_compute_dissimilarity_stim(subj_id, metrics, meg_channels=Tru
         # noinspection PyUnusedLocal
         epochs_rsvp, epochs_comp = None, None  # cleanup memory
         epochs_rsvp1, epochs_rsvp2 = \
-            splithalf_and_average(metadata_fields=('target', 'location'), subj_id=subj_id, data_filenames=dpm.consts.rsvp_raw_files,
+            splithalf_and_average(metadata_fields=grouping_metadata_fields, subj_id=subj_id, data_filenames=dpm.consts.rsvp_raw_files,
                                   epoch_filter=epoch_filter, tmin=tmin, tmax=tmax, rejection=None, load_error_trials=True)
 
         epochs_comp1, epochs_comp2 = \
-            splithalf_and_average(metadata_fields=('target', 'location'), subj_id=subj_id, data_filenames=dpm.consts.comparison_raw_files,
+            splithalf_and_average(metadata_fields=grouping_metadata_fields, subj_id=subj_id, data_filenames=dpm.consts.comparison_raw_files,
                                   epoch_filter=epoch_filter, tmin=tmin, tmax=tmax, rejection=None, load_error_trials=False)
 
     else:
@@ -69,8 +74,8 @@ def preprocess_and_compute_dissimilarity_stim(subj_id, metrics, meg_channels=Tru
         epochs_comp1, epochs_comp2 = epochs_comp, epochs_comp
 
     for metric in metrics:
-        _compute_and_save_dissimilarity(epochs_rsvp1, epochs_rsvp2, 'full-RSVP', subj_id, metric, False, params)
-        _compute_and_save_dissimilarity(epochs_comp1, epochs_comp2, 'full-comp', subj_id, metric, False, params)
+        _compute_and_save_dissimilarity(epochs_rsvp1, epochs_rsvp2, 'RSVP/' + subdir_suffix, subj_id, metric, False, params)
+        _compute_and_save_dissimilarity(epochs_comp1, epochs_comp2, 'comp/' + subdir_suffix, subj_id, metric, False, params)
 
     print('Saved.')
 
@@ -114,12 +119,12 @@ def preprocess_and_compute_dissimilarity_response(subj_id, metrics, meg_channels
 
 #----------------------------------------------------
 def _load_and_average(subj_id, filenames, subdir, baseline, lopass_filter, meg_channels, rejection, tmin, tmax, on_response, epoch_filter,
-                      load_error_trials):
+                      load_error_trials, grouping_metadata_fields=('target', 'location')):
 
     epochs = dpm.files.load_subj_epochs(subj_id, filenames, lopass_filter=lopass_filter, meg_channels=meg_channels, tmin=tmin, tmax=tmax,
                                         baseline=baseline, rejection=rejection, on_response=on_response, load_error_trials=load_error_trials)
     epochs = epochs[epoch_filter]
-    avg = umne.epochs.average_epochs_by_metadata(epochs, ('target', 'location'))
+    avg = umne.epochs.average_epochs_by_metadata(epochs, grouping_metadata_fields)
     avg.save(fn_template.epochs_full.format(subdir, subj_id), overwrite=True)
 
     return avg

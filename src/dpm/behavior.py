@@ -4,6 +4,7 @@ Analyses for behavioral datajc
 import math
 import pandas as pd
 import numpy as np
+import os
 
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
@@ -120,6 +121,16 @@ def print_average_accuracy_and_rt(bdata):
     print('\nStats for {} subjects:'.format(sum_per_subj.shape[0]))
     print('  Average accuracy = {:.1f}%, SD = {:.1f}%'.format(sum_per_subj.accuracy.mean() * 100, sum_per_subj.accuracy.std() * 100))
     print('  Average RT = {:.0f} ms, SD = {:.0f} ms'.format(sum_per_subj.rt.mean(), sum_per_subj.rt.std()))
+
+
+#------------------------------------------------------------------------
+def print_accuracy_per_block(bdata):
+
+    subj_and_file = sorted({(s, f) for s, f in zip(bdata.subject, bdata._filename_)})
+    for s, f in subj_and_file:
+        df = bdata[(bdata.subject == s) & (bdata._filename_ == f)]
+        correct = np.array([c for c in df.correct if c is not None])
+        print('Subject {}, {}: {:.1f}%'.format(s, os.path.basename(f), correct.mean() * 100))
 
 
 #------------------------------------------------------------------------

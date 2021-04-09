@@ -21,5 +21,23 @@ metrics = 'spearmanr', 'euclidean', 'mahalanobis'
 
 for subj_id in dpm.consts.subj_ids_clean:
     print('================================== processing {:} ==================================='.format(subj_id))
-    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True)
-    dpm.rsa.preprocess_and_compute_dissimilarity_response(subj_id, metrics=metrics, rejection=None, include_4=True)
+    #dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True)
+    #dpm.rsa.preprocess_and_compute_dissimilarity_response(subj_id, metrics=metrics, rejection=None, include_4=True)
+
+    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True,
+                                                      grouping_metadata_fields=('decade', 'location'))
+
+    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True,
+                                                      grouping_metadata_fields=('unit', 'location'))
+
+    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True,
+                                                      grouping_metadata_fields=('decade', 'unit'))
+
+    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True,
+                                                      grouping_metadata_fields=['decade'])
+
+    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True,
+                                                      grouping_metadata_fields=['unit'])
+
+    dpm.rsa.preprocess_and_compute_dissimilarity_stim(subj_id, metrics=metrics, rejection=None, include_4=True,
+                                                      grouping_metadata_fields=['location'])
